@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>document</title>
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/touch_direction.js"></script>
+    <style>
+        body,div,dt,dd,dl{
+            padding:0;
+            margin:0;
+        }
+        table,tr,th,td{
+            padding:0;
+            margin:0;
+            border:0;
+        }
+        .table_list{
+            display: table;
+            width:100%;
+            overflow: hidden;
+        }
+        .table_list .left{
+            display: table-cell;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            width: 80px;
+            background: #fff;
+            border-right: solid #c3c3c3 1px;
+            box-shadow: 1px 0 0 #e9e9e9;
+            -webkit-box-shadow: 1px 0 0 #e9e9e9;
+            -moz-box-shadow: 1px 0 0 #e9e9e9;
+            font-size: 14px;
+        }
+        .left dd span{
+            display: table-cell;
+            padding: 0 2px;
+            height: 47px;
+            border-bottom: solid #e9e9e9 1px;
+            font-size: 12px;
+            color: #939393;
+            line-height: 14px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .table_list .right{
+            display: table-cell;
+            overflow: hidden;
+            position: relative;
+            overflow-x:scroll;
+        }
+        .table_list .right .slide{
+            width: 480px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        th{
+            height:47px;
+            border: solid #e9e9e9;
+            border-width: 0 1px 1px 0;
+        }
+        td{
+            width: 115px;
+            height: 47px;
+            padding: 0 2px;
+            border: solid #e9e9e9;
+            border-width: 0 1px 1px 0;
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        dd{
+            display: table;
+            width: 100%;
+        }
+        dt{
+            height: 38px;
+            z-index: 10;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="table_list">
+        <div class="left">
+            <dl>
+                <dd><span>title2</span></dd>
+                <dd><span>title2</span></dd>
+                <dd><span>title2</span></dd>
+                <dd><span>title2</span></dd>
+                <dd><span>title2</span></dd>
+                <dd><span>title2</span></dd>
+            </dl>
+        </div>
+        <div class="right">
+            <div class="slide">
+                <table cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <th>title1</th>
+                        <th>title1</th>
+                        <th>title1</th>
+                        <th>title1</th>
+                        <th>title1</th>
+                    </tr>
+                    <tr>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                    </tr>
+                    <tr>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                    </tr>
+                    <tr>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                    </tr>
+                    <tr>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                    </tr>
+                    <tr>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                        <td>abc</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function(){
+
+        })
+//        $(function(){
+//            var doc = document;
+//            doc.addEventListener("touchstart",  startTouchScroll, false);
+//            doc.addEventListener("touchmove", moveTouchScroll, false);
+//            doc.addEventListener("touchend",  endTouchScroll, false);
+//            var startY, endY, startX, endX;
+//            function startTouchScroll(event)
+//            {
+//                var touch = event.touches[0];
+//                startX = touch.pageX;
+//                startY = touch.pageY;
+//            }
+//            function moveTouchScroll(event)
+//            {
+//                var touch = event.touches[0];
+//                endX = touch.pageX;
+//                endY = touch.pageY;
+//            }
+//            function endTouchScroll(event)
+//            {
+//                //在这里判断也可以
+//                /*var touch = event.touches[0];
+//                 if(!touch){
+//                 return ;
+//                 }
+//                 endX = touch.pageX;
+//                 endY = touch.pageY;
+//                 */
+//
+//                //判断移动的点,1为手指向下滑动,-1为手指向上滑动
+//                var scrollDirection = (endY - startY) > 0 ? 1 : -1;
+//                //判断移动的点,1为手指向右滑动,-1为手指向左滑动
+//                var scrollTranslation = (endX - startX) > 0 ? 1 : -1;
+//                //计算滑动距离
+//                var scrollDistance = Math.abs(endY - startY);
+//                console.log(scrollDistance)
+//                if(scrollTranslation==-1){
+//                    $(".slide").css({
+//                        "transform":"translate3d(-"+10*scrollDistance+"px,0,0)",
+//                        "transition":"all 50ms ease-in-out"
+//                    })
+//                }
+//            }
+//        })
+    </script>
+</body>
+</html>

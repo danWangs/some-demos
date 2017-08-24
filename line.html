@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="js/jquery-2.0.3.min.js"></script>
+        <style type="text/css">
+        	#point1{
+        		position: absolute;
+        		top:10px;
+        		left:10px;
+        		width:40px;
+        		height: 40px;
+        		background-color: red;
+        		border-radius:20px;
+        	}
+        	#point2{
+        		position: absolute;
+        		top:500px;
+        		left: 500px;
+        		width:40px;
+        		height: 40px;
+        		background-color: green;
+        		border-radius:20px;
+        	}
+        	#myCanvas{
+        		width: 100%;
+        		height:100%;
+        	}
+        </style>
+        <script>
+
+            $(function(){
+
+//              var point1 = new Array();
+//              point1['x'] = false;
+//              point1['y'] = false;
+//              var point2 = new Array();
+//              point2['x'] = false;
+//              point2['y'] = false;
+//
+//              var c=document.getElementById("myCanvas");
+//              var cxt=c.getContext("2d");
+//
+//              $(document).click(function(e){
+//                  if ( false === point1['x'] || false === point1['y']) {
+//                      point1['x'] = e.pageX;
+//                      point1['y'] = e.pageY;
+//                      return;
+//                  }
+//                  else if ( false === point2['x'] || false === point2['y'] ) {
+//                      point2['x'] = e.pageX;
+//                      point2['y'] = e.pageY;
+//
+//                      console.log("second");
+//
+//                      cxt.moveTo(point1['x'], point1['y']);
+//                      cxt.lineTo(point2['x'], point2['y']);
+//                      cxt.stroke();
+//
+//                  }
+//
+//
+//              });
+
+				var c=document.getElementById("myCanvas");
+                var cxt=c.getContext("2d");
+                var point1X = $("#point1").position().left;
+                var point1Y = $("#point1").position().top;
+                var point2X = $("#point2").position().left;
+                var point2Y = $("#point2").position().top;
+                c.setAttribute('height', 800);
+                c.setAttribute('width', 800);
+                cxt.moveTo(point1X, point1Y);
+                cxt.lineTo(point2X, point2Y);
+                cxt.stroke();
+            });
+        </script>
+    </head>
+    <body>
+    	<div style="position:relative; width:800px; height:800px;">
+    		<div id="point1"></div>
+    		<div id="point2"></div>
+        <canvas id="myCanvas"></canvas>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$/../angular2-basic" libraries="{angular2-basic node_modules}" />
+    <file url="file://$PROJECT_DIR$/../angular2-webpack-starter" libraries="{angular2-webpack-starter node_modules}" />
+    <file url="file://$PROJECT_DIR$/../ng-demo/ng_demo" libraries="{ng_demo node_modules}" />
+    <file url="file://$PROJECT_DIR$/../react-demo/r-demos" libraries="{r-demos node_modules}" />
+    <file url="file://$PROJECT_DIR$/../webpack-react-demo" libraries="{webpack-react-demo node_modules}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
+  </component>
+</project>

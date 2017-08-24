@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>ECharts map Demo</title>
+		<!--<script src="https://api.map.baidu.com/api?v=2.0&ak=sn5TW7GIZM3zoDwSGUqRi69cBr4xEVUP"></script>-->
+		<script src="js/echarts.min.js"></script>
+		<script src="js/china.js"></script>
+		<!--<script src="js/bmap.js"></script>-->
+		<style>
+			/*#map-wrap {
+				background-color: #091a2a !important;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<div id="map-wrap" style="height: 500px;width:800px;">
+			<!-- 这里以后是地图 -->
+		</div>
+		<script type="text/javascript">
+			// 初始化echarts示例mapChart
+			var mapChart = echarts.init(document.getElementById('map-wrap'));
+			
+			// mapChart的配置
+			var option = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{b}'
+				},
+				box-shadow:true,
+				series: [
+				{
+		            name: '中国',
+		            type: 'map',
+		            mapType: 'china',
+		            selectedMode : 'multiple',
+		            label: {
+		                normal: {
+		                    show: true
+		                },
+		                emphasis: {
+		                    show: true
+		                }
+		            },
+		            data:[
+		                {name:'广东', selected:true}
+		            ]
+		        }
+				],
+				
+			}
+			mapChart.setOption(option);
+		</script>
+	</body>
+
+</html>

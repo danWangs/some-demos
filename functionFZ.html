@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{padding: 0; margin: 0; list-style: none;}
+        .wrap{ width: 920px; height: 320px; padding: 20px; margin: 40px 100px; background: #CCC;}
+        .left-btn{ width: 142px; height: 314px; float: left; background: #999;}
+        .left-btn p{ cursor: pointer; height: 77px; border-bottom: 1px solid #636363; border-top:1px solid #DEDEDE ; text-align: center; font:normal 18px/77px "微软雅黑";}
+        .left-btn p:first-child{ border-top:none;}
+        .left-btn p.active{ background: #fff;}
+        .layout-right{  float: left; width: 770px; height: 314px; background: #fff;}
+        .layout-right li{position: relative; display: none; width: 770px; height: 314px;}
+        .layout-right li.active{ display: block;}
+        .layout-right li .ad-title{position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background:rgba(0, 0, 0, 0.33); color: #fff;}
+        .layout-right li .ad-title span{ box-sizing:border-box; cursor: pointer; text-align: center; font:normal 12px/26px "microsoft yahei";  width: 25%; float:left; border-right: 1px solid #fff;}
+        .layout-right li .ad-title span.curr{ background: #FC005C;}
+        .layout-right li .ad-img .img{ display: none;}
+        .layout-right li .ad-img .img.curr{ display: block;}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="left-btn" id="btn-wrap">
+        <p class="active">最新商品</p>
+        <p>最低优惠</p>
+        <p>名品推荐</p>
+        <p>缤纷活动</p>
+    </div>
+    <div class="layout-right" id="con-wrap">
+        <ul>
+            <li class="active" id="a">
+                <div class="ad-img">
+                    <p class="img curr"><img src="http://pic.qiantucdn.com/images/slideshow/56ce5d0ea426a.jpg" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/56d6508face42.jpg" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/55dae8211a852.png" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/56ce5d0ea426a.jpg" width="770" height="314"/></p>
+                </div>
+                <div class="ad-title">
+                    <span class="curr">小米手机5</span>
+                    <span>小米手机4</span>
+                    <span>小米手机3</span>
+                    <span>小米手机2</span>
+                </div>
+            </li>
+            <li id="b">
+                <div class="ad-img">
+                    <p class="img curr"><img src="http://icon.qiantucdn.com/images/ycRank/paihang-banner.jpg" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/56d6508face42.jpg" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/55dae8211a852.png" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/56ce5d0ea426a.jpg" width="770" height="314"/></p>
+                </div>
+                <div class="ad-title">
+                    <span class="curr">iPhone5</span>
+                    <span>iPhone4</span>
+                    <span>iPhone3</span>
+                    <span>iPhone2</span>
+                </div>
+            </li>
+            <li id="c">
+                <div class="ad-img">
+                    <p class="img curr"><img src="http://pic.qiantucdn.com/images/slideshow/55dae8211a852.png" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/56d6508face42.jpg" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/56ce5d0ea426a.jpg" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/56ce5d0ea426a.jpg" width="770" height="314"/></p>
+                </div>
+                <div class="ad-title">
+                    <span class="curr">锤子手机T1</span>
+                    <span>锤子手机T2</span>
+                    <span>锤子手机T3</span>
+                    <span>锤子手机T4</span>
+                </div>
+            </li>
+            <li id="d">
+                <div class="ad-img">
+                    <p class="img curr"><img src="http://pic.qiantucdn.com/images/slideshow/56ce5d0ea426a.jpg" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/56ce5d0ea426a.jpg" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/56d6508face42.jpg" width="770" height="314"/></p>
+                    <p class="img"><img src="http://pic.qiantucdn.com/images/slideshow/55dae8211a852.png" width="770" height="314"/></p>
+                </div>
+                <div class="ad-title">
+                    <span class="curr">华为手机1</span>
+                    <span>华为手机2</span>
+                    <span>华为手机3</span>
+                    <span>华为手机4</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload=function(){
+        function byId(obj){return document.getElementById(obj)};
+        var oBtnWrap=byId('btn-wrap');
+        var oConWrap=byId('con-wrap');
+        var btnA1=oBtnWrap.getElementsByTagName('p');
+        var oLi=oConWrap.getElementsByTagName('li');
+        var obBtnAtrr=[];
+        var num=0;
+        for (var i=0; i<btnA1.length; ++i){ //大按钮点击
+            btnA1[i].index=i;
+            btnA1[i].onclick=function(){
+                var zIndex=this.index;
+                btnA1[num].className='';
+                for (var i=0; i<btnA1.length; ++i){
+                    btnA1[i].className="";
+                };
+                this.className="active";
+                for (var j=0; j<oLi.length; ++j){
+                    oLi[j].style.display="none";
+                }
+                oLi[zIndex].style.display="block";
+            };
+        };
+        banner1('a');
+        banner1('b');
+        banner1('c');
+        banner1('d');
+        function  banner1(obj){
+            var sobj=byId(obj);
+            var ospan=sobj.getElementsByTagName("span");
+            var oimg=sobj.getElementsByTagName("p");
+            for(var i=0; i<ospan.length; ++i){
+                ospan[i].index=i;
+                ospan[i].onmouseover=function(){
+                    var zindex=this.th;index;
+                    for(var i=0; i<ospan.length; ++i){
+                        ospan[i].className="";
+                    };
+                    this.className="curr";
+                    for(var j=0; j<oimg.length; ++j){
+                        oimg[j].style.display="none";
+                    };
+                    oimg[zindex].style.display="block";
+                };
+            }
+        };
+
+
+
+
+//				for(var i=0; i<oLi.length; ++i){
+//					var ospan=oLi[i].getElementsByTagName("span");
+//					var oimg=oLi[i].getElementsByTagName("p");
+//					for (var j=0; j<ospan.length; ++j){
+//						obBtnAtrr.push(ospan[j]);
+////						ospan[j].index=j;
+////						ospan[j].onclick=function(){
+////							var zIndex=this.index;
+////							this.className='curr';
+////							for (var k=0; k<oimg.length; ++k){
+////								oimg[k].style.display="none";
+////							}
+////							oimg[zIndex].style.display="block";
+////						};
+//					}
+//				};
+
+//				for(var i=0; i<obBtnAtrr.length; ++i){
+//					obBtnAtrr[i].index=i;
+//					obBtnAtrr[i].onclick=function(){
+//						alert(this.index)
+//					};
+//				};
+    };
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

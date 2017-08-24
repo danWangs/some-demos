@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    .left-line{
+        width:200px;
+        padding:20px;
+        text-align: center;
+        border:1px solid #ddd;
+    }
+    ul{
+        border:0;
+        border-left:2px solid #eee;
+    }
+    ul:after{
+
+    }
+    ul,li{padding:0;margin: 0;}
+    ul li {
+        list-style: none;
+        position: relative;
+        min-height: 48px;
+        box-sizing: border-box;
+
+    }
+    li p{
+        text-align: left;
+        padding-left: 36px;
+        line-height: 20px;
+        margin:0;
+    }
+    li span.line-title{
+        position: absolute;
+        top:0;
+        left:0;
+        width:20px;
+        height:20px;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 50%;
+        border:1px solid #ddd;
+        color:#ddd;
+        background-color: #fff;;
+        margin-left: -12px;
+    }
+    li.past span.line-title{
+        background-color: #2dc3e8;
+        color:#fff;
+        border-color:#2dc3e8;
+    }
+    li.past { border-left:2px solid #2dc3e8; margin-left: -2px;}
+    li.past p{ color:#2dc3e8;}
+    li.current span.line-title{
+        border-color: #2dc3e8;
+        color:#2dc3e8;
+    }
+</style>
+</head>
+<body>
+<div class="left-line">
+    <ul>
+        <li class="past">
+            <span class="line-title">1</span>
+            <p>确定招标内容</p>
+        </li>
+        <li class="past">
+            <span class="line-title">2</span>
+            <p>确定招标清单</p>
+        </li>
+        <li class="current">
+            <span class="line-title">3</span>
+            <p>确定招标供应商</p>
+        </li>
+        <li>
+            <span class="line-title">4</span>
+            <p>确定公告内容</p>
+        </li>
+        <li>
+            <span class="line-title">5</span>
+            <p>发布招标公告</p>
+        </li>
+        <li>
+            <span class="line-title">6</span>
+            <p>查看报名情况</p>
+        </li>
+        <li>
+            <span class="line-title">7</span>
+            <p>报名结果通知</p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

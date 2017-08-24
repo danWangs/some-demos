@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../angular2-basic" />
+    <content url="file://$MODULE_DIR$/../angular2-webpack-starter" />
+    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$/../ng-demo/ng_demo" />
+    <content url="file://$MODULE_DIR$/../webpack-react-demo" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="webpack-react-demo node_modules" level="project" />
+    <orderEntry type="library" name="ng_demo node_modules" level="project" />
+    <orderEntry type="library" name="angular2-webpack-starter node_modules" level="project" />
+    <orderEntry type="library" name="angular2-basic node_modules" level="project" />
+  </component>
+</module>

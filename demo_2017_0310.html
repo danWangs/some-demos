@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //继承
+    function Parent(name) {
+        this.name = name;
+    }
+    Parent.prototype.sayName = function () {
+        console.log("parent name is ", this.name);
+    };
+    Parent.prototype.doSomething = function () {
+        console.log("parent do some thing");
+    };
+    function Child(name, parentName) {
+        Parent.call(this, parentName);
+        this.name = name;
+    }
+    Child.prototype.sayName = function () {
+        console.log("child name is", this.name);
+    };
+    Child.prototype = new Parent();
+    Child.prototype.constructor = Child;
+
+    var child = new Child('son');
+    child.sayName();
+    child.doSomething();
+
+
+    console.log(parseInt(0.0000000000000008));
+
+
+    //获得闭包内部对象  还原person对象
+    var o =(function(){
+        var person = {
+            name : "www",
+            age :24
+        };
+        return {
+            run : function(k){
+                return person[k];
+            }
+        }
+    }());
+    Object.defineProperty(Object.prototype,'self',{
+        get : function(){
+            return this;
+        },
+        configurable : true
+    });
+    o.run('self');
+    console.log(o.run('self'))
+
+
+    console.log(0.1+0.2===0.3)
+</script>
+</body>
+</html>

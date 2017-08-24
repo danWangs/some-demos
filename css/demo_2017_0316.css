@@ -1,0 +1,28 @@
+*{
+    padding:0;
+    margin:0;
+}
+#main{
+    margin:0 auto;
+    position: relative;
+}
+.box{
+    padding:15px 0 0 15px;
+    float: left;
+}
+.pic {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+}
+.pic img {
+    width: 165px;
+    height: auto;
+}
+/* Clearfix,避免因子元素浮动而导致的父元素高度缺失能问题 */
+.clearfix:after { clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden;}
+.clearfix { display: inline-block;}
+html[xmlns] .clearfix { display: block;}
+*html .clearfix{height:1%;}
+*+html .clearfix{height:1%;}

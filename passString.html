@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>document</title>
+    <style type="text/css">
+        div{width: 100px;height: 100px;margin-top: 20px;}
+
+    </style>
+</head>
+<body>
+<div id="top" class="Box" num='1'></div>
+<div class="Box" num='2'></div>
+<div class="Box" num='3'></div>
+<div class="Box" num='4'></div>
+<div class="Box" num='5'></div>
+
+
+<script type="text/javascript">
+    var oBox = document.getElementsByClassName("Box");
+    var oTop = document.getElementById("top");
+    var arr = [];
+    for (var i = 0; i < oBox.length; i++)
+    {
+        arr[i] = oBox[i];
+    }
+    alert(oBox.length);
+    oTop.parentNode.removeChild(oTop);
+    alert(oBox.length);
+    alert(arr.length);
+    arr[4].style.background = "red";
+    arr[0].style.background = "blue";
+
+
+</script>
+</body>
+</html>

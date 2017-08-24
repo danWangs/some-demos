@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            position:relative;
+            width: 180px;
+            height: 180px;
+            border:20px dashed #2196f3;
+            margin:50px;
+            float:left;
+        }
+
+        .style_one {
+            background: #9c27b0;
+        }
+        .style_one::before{
+             content:"";
+             position:absolute;
+             top:0;
+             left:0;
+             bottom:0;
+             right:0;
+             background:#fff;
+        }
+    </style>
+</head>
+<body>
+<div class="style_one"></div>
+<script>
+    var obj = {};
+    var a = Symbol('a');
+    var b = Symbol('b');
+
+    obj[a] = 'Hello';
+    obj[b] = 'World';
+
+    var objectSymbols = Object.getOwnPropertySymbols(obj);
+
+    console.log(objectSymbols)
+
+    const TEST_TXT ={
+        text_txt:Symbol('text')
+    }
+    console.log(TEST_TXT.text_txt)
+
+    var s1 = Symbol.for("foo");
+    var s2 = Symbol.for("foo");
+    console.log(s1===s2)
+
+    class MySplitter {
+        constructor(value) {
+            this.value = value;
+        }
+        [Symbol.split](string) {
+            var index = string.indexOf(this.value);
+            if (index === -1) {
+                return string;
+            }
+            return [
+                string.substr(0, index),
+                string.substr(index + this.value.length)
+            ];
+        }
+    }
+
+    console.log('foobar'.split(new MySplitter('foo')))
+    // ['', 'bar']
+
+    console.log('foobar'.split(new MySplitter('bar')))
+    // ['foo', '']
+
+    console.log('foobar'.split(new MySplitter('baz')))
+
+
+    const s = new Set();
+
+    [2, 3, 5, 4, 5, 2, 2].forEach(x => s.add(x));
+
+    for (let i of s) {
+        console.log(i);
+    }
+
+</script>
+</body>
+</html>

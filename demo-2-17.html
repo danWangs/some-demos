@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script>
+        $(function () {
+            $("#btn1").click(function () {
+                $("#div1").myPlugin();
+            });
+            $(".hoverText").hoverElement();
+            $('#div2').textHover({
+                Text: 'I am going to over..',
+                ForeColor: 'yellow',
+                BackColor: 'Red'
+            });
+            $('#div3').textHover({ Text: 'I am second div...' });
+        });
+
+    </script>
+</head>
+<body>
+<div id="div1" style="width: 400px; height: 30px; background-color: Gray;">
+    My God</div>
+<input id="btn1" type="button" value="button" />
+
+<div class="hoverText">
+    First Button..
+</div>
+<div class="hoverText">
+    Second Button..
+</div>
+<div class="hoverText">
+    Third Button..
+</div>
+<div id="div2" class="textBar">
+    Mouse over here.....
+</div>
+<div id="div3" class="textBar">
+    Mouse over here.....
+</div>
+</body>
+</html>

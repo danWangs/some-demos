@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea rows="10" cols="50" id="txt1" placeholder="请输入..."></textarea><br/>
+<input type="button" value="Filter Bad Words" onclick="showText()"/>
+<p><label>Filtered Text:</label><br/>
+    <label><textarea rows="10" cols="50" id="txt2"></textarea></label>
+</p>
+<script>
+    var z = 10;
+    function foo() {
+        console.log(z);
+    }
+    (function (funArg) {
+        var z = 15;
+        funArg();
+    })(foo);
+    //输出10
+
+    var data = [];
+    for (var k = 0; k < 3; k++) {
+        data[k] = function () {
+            console.log(k);
+        };
+    }
+    data[0]();//3
+    data[1]();//3
+    data[2]();//3
+
+    function filterText(sText) {
+        var reBadWords = /badwords|re|ws/gi;
+        return sText.replace(reBadWords, "hua");
+    }
+    function showText() {
+        var oInput1 = document.getElementById("txt1");
+        var oInput2 = document.getElementById("txt2");
+        oInput2.value = filterText(oInput1.value);
+    }
+
+
+    var a = 100;
+    function testResult(){
+        var b = 2 * a;
+        var a = 200;
+        var c = a / 2;
+        console.log(b); //NaN
+        console.log(c); //100
+    }
+    testResult();
+
+//    var tt;
+//    function test(){
+//        tt = "MR_LP -->  QQ ：3206064928";
+//        console.log(tt);//MR_LP -->  QQ ：3206064928
+//        var tt = "李鹏";
+//        console.log(tt);//李鹏
+//    }
+//    test();
+
+    const sum = (a, b) => a + b
+
+    const arity = sum.length
+    console.log(sum); //2
+
+    //高阶函数
+    const filter = (predicate,xs) => xs.filter(predicate)
+    const is = (type) => (x) => Object(x) instanceof type
+    console.log(filter(is(Number),[0,'1',2,null])) //0,2
+
+
+    window.name = 'abc'; //===this.name
+    const greet=()=>`hi,${window.name}`;
+    console.log(greet()); //hi,abc
+
+    var str = "aaab",
+        reg1 = /a+/, //贪婪模式
+        reg2 = /a+?/;//非贪婪模式
+    console.log(str.match(reg1)); //["aaa"], 由于是贪婪模式, 捕获了所有的a
+    console.log(str.match(reg2)); //["a"], 由于是非贪婪模式, 只捕获到第一个a
+
+    const names = 'aaaaaewofksfsdf',
+            reg3 = /a+/;
+    console.log(names.match(reg3))
+
+
+
+</script>
+</body>
+</html>

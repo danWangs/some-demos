@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+    <title>登录</title>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/login.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/fisheye-iutil.min.js"></script>
+    <script type="text/javascript" src="js/dock-example1.js"></script>
+    <script type="text/javascript" src="js/jquery.jqDock.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var jqDockOpts = {align: 'left', duration: 300, labels: 'tc', size: 48, distance: 85};
+            $('#jqDock').jqDock(jqDockOpts);
+        });
+    </script>
+</head>
+<body>
+<div class="menu-item" style="display: none">
+    <p class="item-1"><span>系统工具</span></p>
+    <p class="item-2"><span>系统工具</span></p>
+    <p class="item-3"><span>系统工具</span></p>
+    <p class="item-4"><span>系统工具</span></p>
+    <p class="item-5"><span>合同管理</span></p>
+    <p class="item-6"><span>审批工具</span></p>
+    <div>Jicai platform management system</div>
+</div>
+<div id="dock">
+    <div class="dock-container">
+        <a class="dock-item dock-init" id="item-1" href="javascript:void(0)"><span></span><img src="img/icon_lg_1.png" /></a>
+        <a class="dock-item dock-init" id="item-2" href="javascript:void(0)"><span></span><img src="img/icon_lg_2.png" /></a>
+        <a class="dock-item dock-init" id="item-3" href="javascript:void(0)"><span></span><img src="img/icon_lg_3.png" /></a>
+        <a class="dock-item dock-init" id="item-4" href="javascript:void(0)"><span></span><img src="img/icon_lg_4.png" /></a>
+        <a class="dock-item dock-init" id="item-5" href="javascript:void(0)"><span></span><img src="img/icon_lg_5.png" /></a>
+        <a class="dock-item dock-init" id="item-6" href="javascript:void(0)"><span></span><img src="img/icon_lg_6.png" /></a>
+    </div>
+
+</div>
+<div class="tips">
+    <p>请选择系统</p>
+    <p>用鼠标点击这些系统来选择所要选择的系统登录.</p>
+</div>
+<div class="login-form">
+    <input type="text" class="txt-input account" placeholder="帐号">
+    <input type="text" class="txt-input pwd" placeholder="密码">
+    <div class="sncode-box">
+        <input type="text" class="txt-input sncode" placeholder="验证码">
+        <img src="img/img_sncode.png" alt="">
+    </div>
+
+</div>
+<script>
+    $(function(){
+        $("#dock").animate({
+//            "top":"200px",
+            "transition":"all 200ms linear",
+            "-webkit-transition":"all 200ms linear"
+        },function(){
+            $("#dock").find(".dock-item").removeClass("dock-init");
+        });
+        $(".dock-item").click(function(){
+//            $(this).unbind("onmouseout");
+//            $(this).triggerHandler("onmouseover");
+//            console.log($(this))
+            $("#dock").css("animation-play-state","paused");
+            var num=$(this).attr("id");
+            $("."+num+"").show().siblings("p").hide();
+        });
+        $(".dock-item").css({
+            "transition":"all 200ms linear"
+        });
+        $(".dock-item").click(function(){
+            $(".tips").hide();
+            $(".menu-item,.login-form").show();
+        })
+    });
+</script>
+</body>
+</html>

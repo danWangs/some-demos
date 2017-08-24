@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jcrop</title>
+    <link rel="stylesheet" href="css/jquery.Jcrop.css">
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/jquery.Jcrop.js"></script>
+    <style>
+        .p-overlfow{
+            width:120px;
+            height:120px;
+            overflow:hidden;
+            border:1px dotted #ebebeb;
+        }
+    </style>
+</head>
+<body>
+<form action="" id="form_cut">
+    <input type="hidden" name="form_submit" value="ok">
+    <input type="hidden" id="x1" name="x1" value="0">
+    <input type="hidden" id="x2" name="x2" value="50">
+    <input type="hidden" id="w" name="w" value="50">
+    <input type="hidden" id="y1" name="y1" value="0">
+    <input type="hidden" id="y2" name="y2" value="50">
+    <input type="hidden" id="h" name="h" value="50">
+    <input type="hidden" id="newfile" name="newfile" value="avatar_55432_new.png">
+
+    <img id="element_id" src="img/icon_lg_1.png">
+
+
+    <p class="p-overlfow">
+        <img id="preview" src="img/icon_lg_1.png">
+    </p>
+    <div class="cut-btn">
+        <input type="button" id="ncsubmit" class="submit" value="提交">
+    </div>
+
+
+    <input id="img_input" type="file" accept="image/*"/>
+    <label for="img_input"></label>
+    <div class="preview_box"></div>
+
+</form>
+<script>
+    $(function(){
+        function showPreview(coords){
+            if (parseInt(coords.w) > 0){
+                var rx = 120 / coords.w;
+                var ry = 120 / coords.h;
+                $('#preview').css({
+                    width: Math.round(rx * 160) + 'px',
+                    height: Math.round(ry * 160) + 'px',
+                    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+                    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+                });
+            }
+            $('#x1').val(coords.x);
+            $('#y1').val(coords.y);
+            $('#x2').val(coords.x2);
+            $('#y2').val(coords.y2);
+            $('#w').val(coords.w);
+            $('#h').val(coords.h);
+        }
+        $('#element_id').Jcrop({
+            aspectRatio:1,
+            setSelect: [ 0, 0, 120, 120 ],
+            minSize:[50, 50],
+            allowSelect:0,
+            onChange: showPreview,
+            onSelect: showPreview
+        });
+        $('#ncsubmit').click(function() {
+            var x1 = $('#x1').val();
+            var y1 = $('#y1').val();
+            var x2 = $('#x2').val();
+            var y2 = $('#y2').val();
+            var w = $('#w').val();
+            var h = $('#h').val();
+            if(x1=="" || y1=="" || x2=="" || y2=="" || w=="" || h==""){
+                alert("您必须先选定一个区域");
+                return false;
+            }else{
+                $('#form_cut').submit();
+            }
+        });
+
+        // 检测是否支持File API
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            //  支持
+            $("#img_input").on("change", function(e){
+
+                var file = e.target.files[0]; //获取图片资源
+
+                // 只选择图片文件
+                if (!file.type.match('image.*')) {
+                    return false;
+                }
+
+                var reader = new FileReader();
+
+                reader.readAsDataURL(file); // 读取文件
+
+                // 渲染文件
+                reader.onload = function(arg) {
+
+                    var img = '<img class="preview" src="' + arg.target.result + '" alt="preview"/>';
+                    $(".preview_box").empty().append(img);
+                }
+            });
+        } else {
+            alert('不支持');
+        }
+
+    });
+
+</script>
+</body>
+</html>

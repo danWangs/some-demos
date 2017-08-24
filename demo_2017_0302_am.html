@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            margin:0;
+            padding:0;
+            overflow-x: hidden;
+        }
+        .intro_list{
+            flex-wrap: wrap;
+            display: flex;
+            display: -webkit-flex;
+            color: #929292;
+            background: #fafafa;
+            margin-bottom: 0.2rem;
+            justify-content: space-between;
+        }
+        .sub_list{
+            padding: 0.5rem;
+            margin-bottom: -1rem;/*调整布局而为之*/
+        }
+        #hack{
+            position: relative;
+            height: 0.2rem;
+            background: #fff;
+            top: -0.7rem;
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
+        }
+
+        .sub_list:after{
+            content: "";
+            width: 500%; /*这个是外挂，增加尾巴长度*/
+            height: 0.2rem;
+            background: #fff;
+            display: inline-block;
+            overflow: hidden;
+            margin-left: -0.5rem;/*抵消之前设置的padding：0.5rem;*/
+        }
+    </style>
+</head>
+<body>
+<div class="intro_list">
+    <div class="sub_list">
+        <span style="">质地：<span>纸本</span></span>
+    </div>
+    <div class="sub_list">
+        <span style=" text-align: right;">年代：<span>近现代</span></span>
+    </div>
+    <input type="text" id="text1">
+    <input type="text" id="text2">
+    <button onclick="addValue()">存储</button>
+</div>
+<script>
+    var name = "jay";
+    var person = {
+        name : "kang",
+        getName : function(){
+            return function(){
+                return this.name;
+            };
+        }
+    };
+    console.log(person.getName()());
+    this.names = "asdf";
+    console.log(window.names == this.names)
+    console.log(names);
+    console.log(window.names);
+    console.log(this.names)
+
+
+
+    var arr = [1,2,3,4,5,6,7,8,9];
+    var arr1 = [1,2,3,4,5,6,7,8,9];
+    var testforeach = arr.forEach(function(item,index,input){
+        input[index] = item*10;
+
+    })
+
+    var testmap = arr1.map(function(item,index,input){
+        return item*10;
+    })
+    console.log(testforeach)
+    console.log(testmap)
+    console.log(arr)
+    console.log(arr1)
+
+
+    var filterArr = [
+        {"name":"abc","count":2},
+        {"name":"def","count":3},
+        {"name":"ghi","count":4},
+        {"name":"jkl","count":5}
+    ];
+    var newarr = filterArr.filter(function(item){
+        return item.name =="ghi";
+    })
+    console.log(newarr)
+
+
+
+
+    window.onstorage = function(e){
+        console.log('key : ' + e.key); // 发生变化的键名
+        console.log('oldValue : ' + e.oldValue);   // 旧值
+        console.log('newValue : ' + e.newValue); // 新值
+    };
+
+
+
+    //自定义一个User对象
+    function User(n, a, t) {
+        this.name = n;
+        this.age = a;
+        this.telephone = t;
+    }
+
+    //创建User对象
+    var user = new User("hangge", 100, "123456");
+    //将其保存为方便的JSON格式
+    sessionStorage.setItem("user", JSON.stringify(user));
+
+    //跳转页面
+    //window.location = "hangge.html";
+
+    //将JSON文本转回原来的对象
+    var user2 = JSON.parse(sessionStorage.getItem("user"));
+    localStorage.removeItem("user_name");
+    console.log(user2.name);
+
+
+
+    function addValue(){
+        var key = document.getElementById("text1").value;
+        var item = document.getElementById("text2").value;
+        localStorage.setItem(key,item);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Countdown</title>
+    <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="js/countUp.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+
+    <script type="text/javascript">
+      $(function() {
+        var options = {
+		  useEasing : true, 
+		  useGrouping : true, 
+		  separator : ',', 
+		  decimal : '.', 
+		};
+		var demo = new CountUp("count", 0, 361440755, 0, 2.5, options);
+		var demo1 = new CountUp("count1", 0, 361440755, 0, 2.5, options);
+		var demo2 = new CountUp("count2", 0, 361440755, 0, 2.5, options);
+		demo.start();
+		demo1.start();
+		demo2.start();
+      });
+    </script>
+  </head>
+  <body>
+    <span class="count-wrapper">
+        <span id="count" class="count"></span>
+        <span id="count1" class="count"></span>
+        <span id="count2" class="count"></span>
+    </span>
+  </body>
+</html>

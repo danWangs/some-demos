@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bind</title>
+    <script src="js/jquery-2.0.3.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <button class="btn">btn1</button>
+</div>
+<script>
+    $(function () {
+        $('.btn').on("click",function(){
+            $.ajax({
+                url: "js/test.json",
+                async: false,
+                success: function (res) {
+                    var labels = '';
+                    for (var i = 0; i < res.length; i++) {
+                        labels += "<p>" + res[i].optionValue + "</p>";
+                    }
+                    $(".container").append(labels);
+                }
+            });
+        })
+
+    });
+</script>
+</body>
+</html>

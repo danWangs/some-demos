@@ -1,0 +1,90 @@
+* { margin: 0; padding: 0; }
+#dock { position: relative; top: 200px; transition: all 300ms ease-in-out;
+}
+a.dock-item.dock-init{
+	left:250px !important;
+	transition: all 300ms linear;
+}
+.dock-container { position: relative; top: -8px; height: 100px; padding-left: 20px; }
+a.dock-item { display: block; width: 100px; position: absolute; bottom: 0; text-align: center; text-decoration: none; color: #333; }
+.dock-item span { display: none; padding-left: 20px; }
+.dock-item img { border: 0; margin: 5px 10px 0px; width: 90%; }
+
+.login-form{
+	width:385px;
+	margin:230px auto 30px;
+	display: none;
+}
+.txt-input {
+	width:100%;
+	height:50px;
+	border:1px solid #007edf;
+	background:url("../img/icon_account.png") no-repeat 15px;
+	padding:10px 0 10px 40px;
+	outline:0;
+	border-radius: 20px;
+	box-sizing: border-box;
+	margin-top:20px;
+	font-size:14px;
+}
+.txt-input.account{
+	background:url("../img/icon_account.png") no-repeat 15px;
+}
+.txt-input.pwd{
+	background:url("../img/icon_pwd.png") no-repeat 15px;
+}
+.sncode-box{
+	width:100%;
+	border-radius: 20px;
+	margin-top:20px;
+	border:1px solid #007edf;
+	position: relative;
+	z-index: 2;
+	overflow: hidden;
+}
+.txt-input.sncode{
+	width:74%;
+	margin-top:0;
+	border:0;
+	background:url("../img/icon_sncode.png") no-repeat 15px;
+	border-radius: 0;
+}
+.sncode-box img{
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+
+.menu-item{
+	width: 600px;
+	margin: 50px auto -100px;
+	text-align: center;
+}
+.item-1,.item-2,.item-3,.item-4,.item-5,.item-6{
+	display: none;
+}
+.menu-item p,.menu-item div{
+	font-size:16px;
+	color:#999;
+	margin-top:20px;
+}
+.menu-item p span{
+	font-size:30px;
+	color:#444;
+}
+
+.tips{
+	width:600px;
+	text-align: center;
+	margin:250px auto 30px;
+}
+.tips p{
+	font-size:14px;
+	color:#444;
+}
+.tips p:first-child{
+	font-size:26px;
+	margin-bottom: 20px;
+}

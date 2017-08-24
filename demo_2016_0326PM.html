@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    setTimeout(function() {
+        console.log(4)
+    }, 0);
+    new Promise(function(resolve) {
+        console.log(1);
+        for (var i = 0; i < 10000; i++) {
+            i == 9999 && resolve()
+        }
+        console.log(2);
+    }).then(function() {
+        console.log(5)
+    });
+    console.log(3);
+
+
+
+    const p = new Promise(function(resolve, reject) {
+        console.log('Create a new Promise.');
+    });
+    console.log(p);
+
+
+    p.then(function(res) {
+        console.log('此处执行后续操作');
+    });
+    // 当然, then的最大便利之处便是可以链式调用
+    p.then(function(res) {
+        console.log('先做一件事');
+    }).then(function(res) {
+        console.log('再做一件事');
+    });
+    // then还可以同时接两个回调,分别处理成功和失败状态
+    p.then(function(SuccessRes) {
+        console.log('处理成功的操作');
+    }, function(failRes) {
+        console.log('处理失败的操作');
+    });
+
+
+
+
+    new Promise(function(resolve, reject){
+        Promise.reject('返回一个拒绝状态的Promise');
+    }).catch(function(reason){
+        console.log('catch:', reason);
+    });
+
+
+    //js模块模式
+    var counterModule= (function () {
+        var counter = 0;
+        return {
+            incrementCounter:function () {
+                return counter++;
+            },
+            resetCounter:function () {
+                console.log("counter value prior to reset:"+counter);
+                counter=0;
+            },
+            getCounter:function () {
+                return counter;
+            }
+        }
+    }());
+
+    console.log("counter:"+counterModule.getCounter()); //0
+    counterModule.incrementCounter();
+    console.log("counter:"+counterModule.getCounter()); //1
+    counterModule.resetCounter();
+    console.log("counter:"+counterModule.getCounter()); //0
+
+
+
+</script>
+</body>
+</html>

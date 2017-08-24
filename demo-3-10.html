@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo-ajax</title>
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/demo-3-10.css">
+</head>
+<body>
+    <div class="container">
+        <input type="button" id="button" value="确定" />
+        <table id="result"></table>
+        <table class="oTable">
+            <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>operate</th>
+            </tr>
+            <tr>
+                <td>111</td>
+                <td>111</td>
+                <td>111</td>
+                <td>111</td>
+                <td><a href="#" class="btnRemove">delete</a> <a href="#" class="btnAdd">add</a></td>
+            </tr>
+            <tr>
+                <td>222</td>
+                <td><input type="text"></td>
+                <td>11441</td>
+                <td>111</td>
+                <td><a href="#" class="btnRemove">delete</a> <a href="#" class="btnAdd">add</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        var tb=$(".oTable");
+        $('#button').click(function(){
+            $.ajax({
+                type:"POST",
+                url:"test.json", //请求url地址
+                dataType:"json",
+                success:function(data){
+                    var music="<tr>";
+                    //i表示在data中的索引位置，n表示包含的信息的对象
+                    $.each(data,function(i,n){
+                        //获取对象中属性为optionsValue的值
+                        music+="<td>姓名:"+n["optionValue"]+"</td>";
+                    });
+                    music+="</tr>";
+                    $('#result').append(music);
+                }
+            });
+            return false;
+        });
+        $(".btnRemove").click(function(){
+            $(this).parent().parent().remove();
+        });
+        $(".btnAdd").on("click",function(){
+            var abc = $("table tr:last-child").clone(1,1);
+//            var abc='<tr>';
+//                abc+='<td>123</td>';
+//                abc+='<td>1224324</td>';
+//                abc+='<td>34556</td>';
+//                abc+='<td>1224324</td>';
+//                abc+='<td><a href="#" class="btnRemove">delete</a> <a href="#" class="btnAdd">add</a></td>';
+//                abc+='</tr>';
+            console.log(abc)
+            tb.append(abc);
+        });
+    });
+</script>
+</html>
