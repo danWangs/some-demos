@@ -1,0 +1,186 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+<title>Hello, World</title>  
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:500px;width:800px;}  
+.marker{
+	background-color: #fff;
+	color:#333;
+	cursor: pointer;
+	border: 1px solid #ddd;
+	padding:2px 10px;
+}
+</style>  
+<script src="https://api.map.baidu.com/api?v=2.0&ak=sn5TW7GIZM3zoDwSGUqRi69cBr4xEVUP"></script>
+
+</script>
+</head>  
+ 
+<body>  
+<div id="container"></div> 
+<script type="text/javascript"> 
+	var map = new BMap.Map("container");                         // 创建地图实例  
+	var point = new BMap.Point(116.404, 39.915);                 // 创建点坐标  
+	map.centerAndZoom(point, 18);                                // 初始化地图，设置中心点坐标和地图级别  
+	/*
+	 * type
+	 * BMAP_NAVIGATION_CONTROL_SMALL 表示显示小型的平移缩放控件
+	 * BMAP_NAVIGATION_CONTROL_LARGE 表示显示完整的平移缩放控件
+	 * BMAP_NAVIGATION_CONTROL_PAN   表示只显示控件的平移部分功能
+	 * BMAP_NAVIGATION_CONTROL_ZOOM  表示只显示控件的缩放部分功能
+	 * */
+	var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL} 
+	
+	//可以使用Map.addControl()方法向地图添加控件。在此之前地图需要进行初始化
+	map.addControl(new BMap.NavigationControl(opts));            //平移缩放控件
+	map.addControl(new BMap.ScaleControl());                     //比例尺控件
+	map.addControl(new BMap.OverviewMapControl());               //缩略图控件
+	map.addControl(new BMap.MapTypeControl());    	             //地图类型控件
+	map.addControl(new BMap.CopyrightControl());                 //版权控件
+	map.addControl(new BMap.GeolocationControl());               //定位控件
+	map.setCurrentCity("北京"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+	
+	
+	//自定义控件
+	function ZoomControl(){
+		this.defaultAnchor = BMAP_ANCHOR_BOTTOM_RIGHT;
+		this.defaultOffset = new BMap.Size(10,10);
+	}
+	// 通过JavaScript的prototype属性继承于BMap.Control   
+	ZoomControl.prototype = new BMap.Control();
+	// 自定义控件必须实现initialize方法，并且将控件的DOM元素返回   
+	// 在本方法中创建个div元素作为控件的容器，并将其添加到地图容器中   
+	ZoomControl.prototype.initialize = function(map){    
+	// 创建一个DOM元素   
+	 var div = document.createElement("div");    
+	// 添加文字说明    
+	 div.appendChild(document.createTextNode("放大2级"));    
+	 // 设置样式    
+	 div.setAttribute("class","marker");
+	 // 绑定事件，点击一次放大两级    
+	 div.onclick = function(e){  
+	  map.zoomTo(map.getZoom() + 2);    
+	 }    
+	 // 添加DOM元素到地图中   
+	 map.getContainer().appendChild(div);    
+	 // 将DOM元素返回  
+	 return div;    
+	 }
+	
+	var myZoomCtrl = new ZoomControl();
+	map.addControl(myZoomCtrl);
+	
+	
+	
+	
+	//标注覆盖物
+	var icon = new BMap.Icon('images/icoUp.gif', new BMap.Size(20, 32), {
+	    anchor: new BMap.Size(10, 30)
+	});
+	var marker = new BMap.Marker(point,{icon: icon});
+	marker.enableDragging();    
+	map.addOverlay(marker);  
+	
+	//内存释放
+	//map.removeOverlay(marker);    
+	//marker.dispose(); // 1.1 版本以后不需要这样调用,API会自动帮助完成此工作
+	
+	
+	var opts = {    
+	 width : 250,     // 信息窗口宽度    
+	 height: 100,     // 信息窗口高度    
+	 title : "Hello"  // 信息窗口标题   
+	}    
+//	var infoWindow = new BMap.InfoWindow("World", opts);  // 创建信息窗口对象    
+	var infoWindow = new BMap.InfoWindow("<p style='font-size:12px;line-height:1.8em;'>我是lable打开的信息窗口</p>");  // 创建信息窗口对象
+	 
+	marker.addEventListener("mouseover", function(){    
+	 map.openInfoWindow(infoWindow,point);      // 打开信息窗口
+	});
+	
+	
+	
+	
+	//折线覆盖物  -- 可实现 公交/地铁路线
+	var polyline = new BMap.Polyline([    
+	   new BMap.Point(116.399, 39.910),    
+	   new BMap.Point(116.405, 39.920)    
+	 ],    
+	 {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}    
+	);    
+	map.addOverlay(polyline);
+	
+	
+	
+	// 定义自定义覆盖物的构造函数  
+	function SquareOverlay(center, length, color){    
+	 this._center = center;    
+	 this._length = length;    
+	 this._color = color;    
+	}    
+	// 继承API的BMap.Overlay    
+	SquareOverlay.prototype = new BMap.Overlay();
+	
+	
+	// 实现初始化方法  
+	SquareOverlay.prototype.initialize = function(map){    
+	// 保存map对象实例   
+	 this._map = map;        
+	 // 创建div元素，作为自定义覆盖物的容器   
+	 var div = document.createElement("div");    
+	 div.style.position = "absolute";        
+	 // 可以根据参数设置元素外观   
+	 div.style.width = this._length + "px";    
+	 div.style.height = this._length + "px";    
+	 div.style.background = this._color;      
+	// 将div添加到覆盖物容器中   
+	 map.getPanes().markerPane.appendChild(div);      
+	// 保存div实例   
+	 this._div = div;      
+	// 需要将div元素作为方法的返回值，当调用该覆盖物的show、   
+	// hide方法，或者对覆盖物进行移除时，API都将操作此元素。   
+	 return div;    
+	}
+	
+	// 实现绘制方法   
+	SquareOverlay.prototype.draw = function(){    
+	// 根据地理坐标转换为像素坐标，并设置给容器    
+	 var position = this._map.pointToOverlayPixel(this._center);    
+	 this._div.style.left = position.x - this._length / 2 + "px";    
+	 this._div.style.top = position.y - this._length / 2 + "px";    
+	}
+	
+	// 添加自定义方法   
+	SquareOverlay.prototype.toggle = function(){    
+	 if (this._div){    
+	   if (this._div.style.display == ""){    
+	     this.hide();    
+	   }    
+	   else {    
+	     this.show();    
+	   }    
+	 }    
+	}
+	
+	// 添加自定义覆盖物   
+	var mySquare = new SquareOverlay(map.getCenter(), 100, "rgba(0,0,0,0.5)");    
+	map.addOverlay(mySquare);
+	
+	var traffic = new BMap.TrafficLayer();        // 创建交通流量图层实例      
+	map.addTileLayer(traffic);                    // 将图层添加到地图上
+	
+	var myPushpin = new BMap.PushpinTool(map);         // 创建标注工具实例    
+	myPushpin.addEventListener("markend", function(e){  // 监听事件，提示标注点坐标信息   
+	 alert("您标注的位置：" +     
+	       e.marker.getPoint().lng + ", " +     
+	       e.marker.getPoint().lat);    
+	});    
+	myPushpin.open(); 
+</script>  
+</body>  
+</html>
